@@ -6,7 +6,7 @@ from openai import OpenAI
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app, origins=["http://localhost:3000", "http://192.168.1.9:3000"])
 
 # Initialize OpenAI client
 client = OpenAI(api_key="YOUR_API_KEY")  # Replace with your actual API key
@@ -129,12 +129,12 @@ def summarize_youtube_video():
         return jsonify({'error': str(e)}), 500
 
 
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')  # Set this to your frontend domain in production
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
+# @app.after_request
+# def after_request(response):
+#     response.headers.add('Access-Control-Allow-Origin', '*')  # Set this to your frontend domain in production
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+#     return response
 
 # Run the Flask app
 if __name__ == '__main__':
