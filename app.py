@@ -20,7 +20,7 @@ def clean_subtitles(srt_text):
     ])
 
 
-@app.route('/subtitles', methods=['POST'])
+@app.route('/subtitles', methods=['POST', 'OPTIONS'])
 def get_subtitles():
     data = request.get_json()
     if not data or 'video_url' not in data:
